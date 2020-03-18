@@ -47,13 +47,13 @@ def parseData(src_data, frameEnu, socket):
             if assetID > 1000058:
                 assetID = random.randint(1000000,1000058)
             actor["AssetID"] = str(assetID) #str(random.randint(1000000,1000058))
-            actor["Rotation"] = str(GIS.DegreeToRadian(singleData['courseAngle']))
+            actor["Rotation"] = str(GIS.DegreeToRadian(90.000-singleData['courseAngle']))
             actor["PositionZ"] = str(singleData['coordinate']['z']+0.9)
             actor["PositionX"] = str(out.x)
             actor["PositionY"] = str(out.y)
             #print('ready to send:' + str(actor))
             try:
-                socket.send((json.dumps(actor) + '@').encode('utf-8'))
+                socket.send((json.dumps(actor) + '@').encode('utf-8'))                
             except:
                 print('traffic provider is closed: ' + str(singleData['timestamp']))
 
